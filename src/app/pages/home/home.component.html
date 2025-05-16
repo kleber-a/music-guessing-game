@@ -1,0 +1,15 @@
+<div class="main">
+  <ul>
+
+    @for (item of getArtists(); track item) {
+      <li>
+        <img [src]="item.picture" />
+        <button (click)="playAudio(item)">{{isPlaying() ? 'Pause' : 'Play'}}</button>
+        <button (click)="pause()">Pause</button>
+          <p>{{ currentTime() | number:'1.0-0' }} / {{ duration() | number:'1.0-0' }} segundos</p>
+      </li>
+    }@empty {
+      <li>Loading...</li>
+    }
+  </ul>
+</div>
