@@ -1,8 +1,30 @@
 :host {
-  background-color: red;
+
   .main {
-    padding: 0;
-    margin: 0;
-    background-color: rgb(8, 8, 8);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.5s ease;
+
+    &.transitioning {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+
+  .score-container {
+    text-align: center;
+    margin-top: 20px;
+
+    .score-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ff88; // verde neon para destacar
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
   }
 }

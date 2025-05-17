@@ -1,1 +1,45 @@
-<p>card-music works!</p>
+<section class="container">
+  <h2 class="title"><mat-icon>headset</mat-icon> Adivinha a Música</h2>
+  <p class="text">Ouça o trecho e escolha a música correta</p>
+
+  <span class="step">Rodada {{round}} de {{totalRound}}</span>
+  <span class="points">Pontuação</span>
+
+  <div class="play_music">
+    <div class="play_music_buttons">
+      <button (click)="playMusic()" class="button">
+        <mat-icon>{{ !this.isPlaying() ? 'play_arrow' : 'pause_arrow'}}</mat-icon>
+      </button>
+      <div class="music-volume">
+        <mat-icon>volume_up</mat-icon>
+        <input type="range" min="0" max="1" step="0.01" [value]="volume()"
+          (input)="setVolume($any($event.target).value)" />
+      </div>
+
+    </div>
+
+    <div class="music-progress">
+      <span class="time">{{ currentTime() | number: '1.0-0' }}s</span>
+
+      <input type="range" min="0" [max]="duration()" [value]="currentTime()" step="0.01"
+        (input)="seekMusic($any($event.target).value)" />
+
+      <span class="time">{{ duration() | number: '1.0-0' }}s</span>
+    </div>
+
+    <p class="text">Clique no botão play para ouvir a música</p>
+
+  </div>
+
+  <div class="selections">
+    @for (item of selection(); track $index) {
+      <button class="no_select "
+      [ngClass]="{
+      'failure': !item.value && item.click,
+      'accept': item.value && item.click,
+  }" (click)="checkResponse(item)">{{item?.name}}</button>
+    }
+
+  </div>
+
+</section>
